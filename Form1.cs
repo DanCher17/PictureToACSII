@@ -87,5 +87,20 @@ namespace PictureToASCII {
             return result;
         }
 
+        private void saveAsHTML_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "HTML files (*.html)|*.html";
+            DialogResult diag = saveFileDialog1.ShowDialog();
+            if (diag == DialogResult.OK)
+            {
+                //заміна всіх HTML пробілів стандартними
+                _html = _html.Replace("&nbsp;", " ").Replace("<br>", "\r\n");
+                StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
+                sw.Write(_html);
+                sw.Flush();
+                sw.Close();
+            }
+        }
+
     }
     }
