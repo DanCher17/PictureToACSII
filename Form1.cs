@@ -31,6 +31,13 @@ namespace PictureToASCII {
             image = GetReSizedImage(image, slider.Value);
 
             _html = ConvertToAscii(image);
+
+            int fontSize = Math.Max((slider.Maximum - slider.Value) / 32, 4);
+            // Р—Р°РєР»СЋС‡РёРј РЅР°С€Рµ С‚РµРєСЃС‚РѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РІ С‚РµРі <pre>, С‡С‚РѕР±С‹ СЃРѕС…СЂР°РЅРёС‚СЊ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ
+            _html = "<pre style=\"font-size: " + fontSize + "px\">" + _html + "</pre>";
+
+            ResultWindow.DocumentText = _html;
+            btnConvertToAscii.Enabled = true;
         }
 
         private string ConvertToAscii(Bitmap image)
@@ -43,7 +50,7 @@ namespace PictureToASCII {
                 for (int w = 0; w < image.Width; w++)
                 {
                     Color pixelColor = image.GetPixel(w, h);
-                    // середнє значення з RGB для знаходження сірого кольору
+                    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ RGB пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     int gray = (pixelColor.R + pixelColor.G + pixelColor.B) / 3;
                     Color grayColor = Color.FromArgb(gray, gray, gray);
                     // Use the toggle flag to minimize height-wise stretch
@@ -68,10 +75,10 @@ namespace PictureToASCII {
 
         private Bitmap GetReSizedImage(Bitmap inputBitmap, int asciiWidth)
         {
-            // обчислення нової висоти, пропорціонально до зміненої ширини
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             int asciiHeight = (int)Math.Ceiling((double)inputBitmap.Height * asciiWidth / inputBitmap.Width);
 
-            // створення нового Bitmap зображення
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Bitmap пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Bitmap result = new Bitmap(asciiWidth, asciiHeight);
             Graphics g = Graphics.FromImage((Image)result);
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
