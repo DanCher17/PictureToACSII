@@ -32,7 +32,6 @@ namespace PictureToASCII {
             this.btnConvertToAscii.TabIndex = 3;
             this.btnConvertToAscii.Text = "Конвертація";
             this.btnConvertToAscii.UseVisualStyleBackColor = true;
-            this.btnConvertToAscii.Click += new System.EventHandler(this.btnConvertToAscii_Click);
             // 
             // btnBrowse
             // 
@@ -97,7 +96,6 @@ namespace PictureToASCII {
             this.ExportToHtml.TabIndex = 11;
             this.ExportToHtml.Text = "Експортувати в HTML";
             this.ExportToHtml.UseVisualStyleBackColor = true;
-            this.ExportToHtml.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -116,7 +114,6 @@ namespace PictureToASCII {
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "PictureToASCII";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.slider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
