@@ -18,5 +18,12 @@ namespace PictureToASCII {
                 txtPath.Text = openFileDialog1.FileName;
             }
         }
+        private void btnConvertToAscii_Click(object sender, EventArgs e)
+        {
+            btnConvertToAscii.Enabled = false;
+            // завантаження зображення
+            Bitmap image = new Bitmap(txtPath.Text, true);
+            // зміна розміру зображення, пропорціонально ширині, узгоджуючи з якістю конвертування
+        }
+        }
     }
-}
